@@ -1,0 +1,15 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #4682b4;
+    
+}
+
+header img{
+    max-height: 2.5em;
+    margin-right: 10px
+}
