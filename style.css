@@ -15,3 +15,14 @@ header img{
 header h1{
     font-size: 2em;    
 }
+#select_type{
+    width: 70px
+}
+.search{
+    margin: 2em 12em;
+    display: flex;   
+    align-items: center;
+}
+.search input{
+    width: 230px
+}
