@@ -47,8 +47,7 @@ header h1{
 .divCards{
     margin: 2em;
     display: flex;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap;    
 }
 .cardPokemon{
     width: 17em;
@@ -110,8 +109,8 @@ header h1{
     margin-top: 2px;
     flex-wrap: wrap; 
     align-items: center;      
-   position: relative;
-   left: 7em
+    position: relative;
+    left: 7em
 }
 .buttonStatus{
     width: 8em;
@@ -177,8 +176,26 @@ header h1{
 .type-dragon{
     background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
 }
-
-
+.invisible{
+    display:none;
+}
+.divStats{
+    width: 90%;
+    height: 60%;
+    margin-left: 10px;
+    margin-top: 5px;
+    background-color: white;
+    font-size: 0.7em;    
+}
+.nameListStats{
+    padding-top: 5px;
+    padding-left: 2px;
+}
+.backGroundStats{
+    background: linear-gradient(to left, var(--blue),#87ceeb);
+    height:10px;   
+    max-width:100%;    
+}
 
 
 @media screen and (min-width: 1024px) {
