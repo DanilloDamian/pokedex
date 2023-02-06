@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const mainDiv = document.createElement('div');
     doc.appendChild(mainDiv);
     mainDiv.classList.add('divCards'); 
-     
+
     const addPokemons = (pokemons) =>{
         pokemons.forEach(pokemon => {
 
@@ -17,18 +17,10 @@ document.addEventListener("DOMContentLoaded", function(){
             cardPokemon.appendChild(cardHeader);
             cardHeader.classList.add('cardHeader');
         
-            //button sound
-            const buttonSound = document.createElement('button');
-            buttonSound.type = 'button';
-            buttonSound.classList.add('buttonSound');
-            cardHeader.appendChild(buttonSound);        
+            const blueBall = document.createElement('div');           
+            blueBall.classList.add('blueBall');
+            cardHeader.appendChild(blueBall);        
             
-            const imgSound = document.createElement('img')
-            buttonSound.appendChild(imgSound);
-            imgSound.src = 'img/sound.png';
-            imgSound.classList.add('imgSound');
-            //end button sound
-
             const name = document.createElement('h2');
             cardHeader.appendChild(name);
             name.classList.add('nomePokemon');
@@ -47,15 +39,27 @@ document.addEventListener("DOMContentLoaded", function(){
             internalDivisionCard.appendChild(divStats);
             divStats.classList.add('sectionStats');
 
+            const buttonStatus = document.createElement('button');
+            divStats.appendChild(buttonStatus);
+            buttonStatus.classList.add('buttonStatus');
+            buttonStatus.textContent = 'status'
+
+            const pokemonTypes = document.createElement('div');
+            divStats.appendChild(pokemonTypes);                            
+            
+            for (let index = 0; index < pokemon.type.length; index++) {
+                const type = document.createElement('h3');
+                pokemonTypes.appendChild(type);
+                type.textContent= `${pokemon.type[index]}`;
+                type.classList.add('type',`type-${pokemon.type[index]}`);                                          
+            };                        
         });
-    } 
+    };
 
     fetch('https://raw.githubusercontent.com/alluzera/allupokedex/pokedex-API/pokestats.json?pageSize=20')
     .then(response=>response.json())
-    .then(jsonData => addPokemons(jsonData.data));
-   
-    
-    
-   
+    .then(jsonData => addPokemons(jsonData.data))
+    .catch(e=>alert(e));
+     
 })
 

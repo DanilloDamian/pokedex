@@ -61,25 +61,23 @@ header h1{
     flex-direction: column;
 }
 .cardHeader{
+    width:91%;
     display: flex;
     align-items:center;
     justify-content: space-between
 }
-.buttonSound{
-    height: 3em;
-    width: 3em;
+.blueBall{
+    height: 2em;
+    width: 2em;
     background: radial-gradient(closest-corner, var(--white),var(--blue), var(--blue));
     background-position:top;
-    border 1em solid;
+    border: 1px solid;
     border-radius: 100px;
     margin-top:1em;    
 }
-.imgSound{
-    height:1.5em;
-}
 .nomePokemon{
     background-color: var(--white);
-    width: 70%;
+    width: 12em;
     height: 2em;
     border: thick double;
     margin-top: 1em;
@@ -110,16 +108,75 @@ header h1{
     display: flex;    
     flex-direction: column;
     margin-top: 2px;
-    flex-wrap: wrap;       
+    flex-wrap: wrap; 
+    align-items: center;      
    position: relative;
    left: 7em
 }
-.statusPokemon{
-    width: 100%;    
+.buttonStatus{
+    width: 8em;
+    border: thick double;
 }
-
-
-
+.type{
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 1em;
+    padding-top:4px;
+    height:1.5em;
+    width:9em;
+}
+.type-grass{
+    background-color:  #9bcc47;
+}
+.type-poison{
+    background-color:  #b97fc6;
+}
+.type-fire{
+    background-color:  #fd7d22;
+}
+.type-flying{    
+    background: linear-gradient(180deg, #3dc7ef 50%, white 50%);
+}
+.type-water{
+    background-color: #4592c4;
+}
+.type-bug{
+    background-color: #729f3f;
+}
+.type-normal{
+    background-color: white;
+}
+.type-electric{
+    background-color: #eed535;
+}
+.type-ground{
+    background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+}
+.type-fairy{
+    background-color: #fdb9e9;
+}
+.type-fighting{
+    background-color: #d56723;
+}
+.type-psychic{
+    background-color: #f366b9;
+}
+.type-rock{
+    background-color:  #a38c21;
+}
+.type-steel{
+    background-color: #9eb7b8;
+}
+.type-ice{
+    background-color: #51c4e7;
+}
+.type-ghost{
+    background-color:  #7b62a3;
+}
+.type-dragon{
+    background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+}
 
 
 
