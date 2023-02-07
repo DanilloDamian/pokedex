@@ -4,6 +4,7 @@
     --blue: #4682b4;
     --gray: gray;
     --black: black;
+    --yellow: yellow;
 }
 *{
     font-family: 'Press Start 2P', cursive;
@@ -58,6 +59,7 @@ header h1{
     display: flex;
     align-items:center;
     flex-direction: column;
+    
 }
 .cardHeader{
     width:91%;
@@ -88,7 +90,7 @@ header h1{
 .articleCard{
     margin-top: 5px;
     background-color: var(--gray);
-    height: 76%;
+    height: 100%;
     width: 90%;
     align-items: center;
     border: 1px solid;
@@ -97,6 +99,7 @@ header h1{
 .imgPokemon{    
     background-color:var(--black);
     width: 90%;
+    height: 11em;
     max-height: 60%;
     margin-left: 10px;
     margin-top: 5px
@@ -181,10 +184,10 @@ header h1{
 }
 .divStats{
     width: 90%;
-    height: 60%;
+    height: 15em;
     margin-left: 10px;
     margin-top: 5px;
-    background-color: white;
+    background-color: var(--white);
     font-size: 0.7em;    
 }
 .nameListStats{
@@ -195,6 +198,11 @@ header h1{
     background: linear-gradient(to left, var(--blue),#87ceeb);
     height:10px;   
     max-width:100%;    
+}
+.imgButtons{
+    position: relative;
+    top: -5em;
+    left:-3.5em
 }
 
 

@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
             const cardPokemon = document.createElement('div');
             mainDiv.appendChild(cardPokemon);
             cardPokemon.classList.add("cardPokemon");
-        
+            cardPokemon.addEventListener('click',showStatus);
+
             const cardHeader = document.createElement('div');
             cardPokemon.appendChild(cardHeader);
             cardHeader.classList.add('cardHeader');
@@ -28,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function(){
             const internalDivisionCard = document.createElement('article');
             cardPokemon.appendChild(internalDivisionCard);
             internalDivisionCard.classList.add('articleCard');
-            
+                        
             const img = document.createElement('img');
             internalDivisionCard.appendChild(img);
             img.classList.add('imgPokemon');
             img.src = pokemon.img;
-
+            
             const listStats = document.createElement('div');
             internalDivisionCard.appendChild(listStats);
             listStats.classList.add('divStats','invisible');
@@ -61,28 +62,76 @@ document.addEventListener("DOMContentLoaded", function(){
             divStats.appendChild(buttonStatus);
             buttonStatus.classList.add('buttonStatus');
             buttonStatus.textContent = 'stats';
-            buttonStatus.addEventListener('click',showStatus);
+           
 
             const pokemonTypes = document.createElement('div');
-            divStats.appendChild(pokemonTypes);                            
+            divStats.appendChild(pokemonTypes);
+            pokemonTypes.classList.add('divTypes');                  
             
             for (let index = 0; index < pokemon.type.length; index++) {
                 const type = document.createElement('h3');
                 pokemonTypes.appendChild(type);
                 type.textContent= `${pokemon.type[index]}`;
                 type.classList.add('type',`type-${pokemon.type[index]}`);                                          
-            };                        
+            };  
+            
+            const imgButtons = document.createElement('img');
+            cardPokemon.appendChild(imgButtons);
+            imgButtons.classList.add('imgButtons');
+            imgButtons.src= 'img/button.png';
         });
     };
+
     function showStatus(evt){
-        var parent = this.parentNode;
-        var grandParent = parent.parentNode;
-        var bigParent = grandParent.parentNode;
-        var img= bigParent.querySelector('img');
-        var divStats= grandParent.querySelector('div');
-        img.classList.toggle('invisible');        
-        divStats.classList.toggle('invisible');
-    }
+        evt.preventDefault(); 
+        const forClick = this;   
+        forClick.childNodes[1].childNodes[0].classList.toggle('invisible');
+        forClick.childNodes[1].childNodes[1].classList.toggle('invisible');
+    };
+
+    const filter = document.querySelector("#filter");
+    filter.addEventListener("input", function(){
+        const pokemons = document.querySelectorAll(".cardPokemon");
+        if(this.value.length>0){
+            for (let index = 0; index < pokemons.length; index++) {
+                const pokemon = pokemons[index];
+                const pokemonName = pokemon.querySelector(".nomePokemon").textContent;
+                const exp = new RegExp(this.value, "i");
+                if(!exp.test(pokemonName)){
+                    pokemon.classList.add("invisible");
+                }else{
+                    pokemon.classList.remove("invisible");
+                }                
+            }
+        }else{
+            for (let index = 0; index < pokemons.length; index++) {
+                const pokemon = pokemons[index];
+                pokemon.classList.remove('invisible');
+            }
+        }
+    });
+
+    const typeSelect = document.querySelector("#select_type");
+    typeSelect.addEventListener("input",function(){
+        const pokemons = document.querySelectorAll(".cardPokemon");
+        if(this.value.length>0){
+            for (let index = 0; index < pokemons.length; index++) {
+                const pokemon = pokemons[index];
+                const typeName = pokemon.querySelector(".type").textContent;
+                const exp = new RegExp(this.value, "i");                
+                if(!exp.test(typeName)){
+                    pokemon.classList.add("invisible");
+                }else{
+                    pokemon.classList.remove("invisible");
+                }
+            }
+        }else{
+            for (let index = 0; index < pokemons.length; index++) {
+                const pokemon = pokemons[index];
+                pokemon.classList.remove('invisible');
+            }
+        }
+    });
 
     fetch('https://raw.githubusercontent.com/alluzera/allupokedex/pokedex-API/pokestats.json?pageSize=20')
     .then(response=>response.json())
