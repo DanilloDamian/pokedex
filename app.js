@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function(){
             buttonStatus.classList.add('buttonStatus');
             buttonStatus.textContent = 'stats';
            
-
             const pokemonTypes = document.createElement('div');
             divStats.appendChild(pokemonTypes);
             pokemonTypes.classList.add('divTypes');                  
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(){
             cardPokemon.appendChild(imgButtons);
             imgButtons.classList.add('imgButtons');
             imgButtons.src= 'img/button.png';
-        });
+        });        
     };
 
     function showStatus(evt){
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if(this.value.length>0){
             for (let index = 0; index < pokemons.length; index++) {
                 const pokemon = pokemons[index];
-                const typeName = pokemon.querySelector(".type").textContent;
+                const typeName = pokemon.querySelector(".type").textContent;  
                 const exp = new RegExp(this.value, "i");                
                 if(!exp.test(typeName)){
                     pokemon.classList.add("invisible");
@@ -132,11 +131,10 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
     });
-
+    
     fetch('https://raw.githubusercontent.com/alluzera/allupokedex/pokedex-API/pokestats.json?pageSize=20')
     .then(response=>response.json())
     .then(jsonData => addPokemons(jsonData.data))
-    .catch(e=>alert(e));
-     
-})
+    .catch(e=>alert(e));     
+});
 

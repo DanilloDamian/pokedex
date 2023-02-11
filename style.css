@@ -58,8 +58,7 @@ header h1{
     margin: 1em;
     display: flex;
     align-items:center;
-    flex-direction: column;
-    
+    flex-direction: column;    
 }
 .cardHeader{
     width:91%;
@@ -90,8 +89,9 @@ header h1{
 .articleCard{
     margin-top: 5px;
     background-color: var(--gray);
-    height: 100%;
-    width: 90%;
+    height: 275px;
+    min-height: 275px;
+    width: 13em;
     align-items: center;
     border: 1px solid;
     border-radius: 0px 0px 0px 50px
@@ -99,7 +99,7 @@ header h1{
 .imgPokemon{    
     background-color:var(--black);
     width: 90%;
-    height: 11em;
+    height: 165px;
     max-height: 60%;
     margin-left: 10px;
     margin-top: 5px
@@ -184,7 +184,8 @@ header h1{
 }
 .divStats{
     width: 90%;
-    height: 15em;
+    height: 158.97px;
+    min-height:165px;
     margin-left: 10px;
     margin-top: 5px;
     background-color: var(--white);
@@ -215,5 +216,20 @@ header h1{
     .input{
         margin-left: 7em;
         margin-right: 2em;
+    }
+    #select_type{
+        font-size:1em;        
+    }
+    .cardPokemon:hover{
+        transform: scale(1.3);
+        border: 2px solid;
+        border-color: var(--yellow);
+    }    
+    .blueBall{
+       margin-left:0; 
+    }
+    .nomePokemon{
+        margin-right:1.3em;
+        font-size: 0.9em;
     }
 }
