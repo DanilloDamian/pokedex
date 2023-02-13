@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function(){
             imgButtons.classList.add('imgButtons');
             imgButtons.src= 'img/button.png';
         });        
+        
     };
 
     function showStatus(evt){
@@ -116,13 +117,17 @@ document.addEventListener("DOMContentLoaded", function(){
         if(this.value.length>0){
             for (let index = 0; index < pokemons.length; index++) {
                 const pokemon = pokemons[index];
-                const typeName = pokemon.querySelector(".type").textContent;  
-                const exp = new RegExp(this.value, "i");                
-                if(!exp.test(typeName)){
+                const listTypes = pokemon.querySelectorAll(".type");
+                let listTypesString = [];
+                listTypes.forEach(element=> listTypesString.push(element.textContent));
+                const exp = new RegExp(this.value, "i");
+                if(!exp.test(listTypesString[0]) ){
                     pokemon.classList.add("invisible");
+                }if(!exp.test(listTypesString[1])){
+                    pokemon.classList.add("invisible");                    
                 }else{
                     pokemon.classList.remove("invisible");
-                }
+                };
             }
         }else{
             for (let index = 0; index < pokemons.length; index++) {
