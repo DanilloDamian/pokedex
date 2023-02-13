@@ -97,7 +97,7 @@ header h1{
     border-radius: 0px 0px 0px 50px
 }
 .imgPokemon{    
-    background-color:var(--black);
+    background-color:var(--white);
     width: 90%;
     height: 165px;
     max-height: 60%;
