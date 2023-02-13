@@ -61,7 +61,7 @@ header h1{
     flex-direction: column;    
 }
 .cardHeader{
-    width:95%;
+    width:13em;
     display: flex;
     align-items:center;
     justify-content: space-between

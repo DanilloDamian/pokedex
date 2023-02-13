@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const pokemon = pokemons[index];
                 const pokemonName = pokemon.querySelector(".nomePokemon").textContent;
                 const exp = new RegExp(this.value, "i");
-                !exp.test(pokemonName)? pokemon.classList.add("invisible"):pokemon.classList.remove("invisible");                               
+                exp.test(pokemonName) ? pokemon.classList.remove("invisible") : pokemon.classList.add("invisible");                               
             }
         }else{
             for (let index = 0; index < pokemons.length; index++) {
@@ -115,14 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const listTypes = pokemon.querySelectorAll(".type");
                 let listTypesString = [];
                 listTypes.forEach(element=> listTypesString.push(element.textContent));
-                const exp = new RegExp(this.value, "i");
-                if(!exp.test(listTypesString[0]) ){
-                    pokemon.classList.add("invisible");
-                }if(!exp.test(listTypesString[1])){
-                    pokemon.classList.add("invisible");                    
-                }else{
-                    pokemon.classList.remove("invisible");
-                };
+                listTypesString.includes(this.value) ? pokemon.classList.remove("invisible") : pokemon.classList.add("invisible");
             }
         }else{
             for (let index = 0; index < pokemons.length; index++) {
