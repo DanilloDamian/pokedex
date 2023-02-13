@@ -78,10 +78,9 @@ document.addEventListener("DOMContentLoaded", function(){
             cardPokemon.appendChild(imgButtons);
             imgButtons.classList.add('imgButtons');
             imgButtons.src= 'img/button.png';
-        });        
-        
+        });
     };
-
+    
     function showStatus(evt){
         evt.preventDefault(); 
         const forClick = this;   
@@ -97,11 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const pokemon = pokemons[index];
                 const pokemonName = pokemon.querySelector(".nomePokemon").textContent;
                 const exp = new RegExp(this.value, "i");
-                if(!exp.test(pokemonName)){
-                    pokemon.classList.add("invisible");
-                }else{
-                    pokemon.classList.remove("invisible");
-                }                
+                !exp.test(pokemonName)? pokemon.classList.add("invisible"):pokemon.classList.remove("invisible");                               
             }
         }else{
             for (let index = 0; index < pokemons.length; index++) {
@@ -136,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
     });
-    
+
     fetch('https://raw.githubusercontent.com/alluzera/allupokedex/pokedex-API/pokestats.json?pageSize=20')
     .then(response=>response.json())
     .then(jsonData => addPokemons(jsonData.data))
