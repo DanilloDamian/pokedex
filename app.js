@@ -99,6 +99,16 @@ document.addEventListener("DOMContentLoaded", function () {
             findByName(filter.value, typeSelect.value);
         }
     });
+     
+    typeSelect.addEventListener("input", function () {
+        removePokemons();
+        if (typeSelect.value == '') {
+            findAll()
+        } else {            
+            findByName(filter.value, typeSelect.value);
+        }
+    });
+
 
     function removePokemons() {
         mainDiv.innerText = "";
@@ -109,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(r => { addPokemons(r) })
             .catch(e => { console.log(e); window.location.reload() });
     }
+
+
     async function findByName(name, type) {
         if (type == "") {
             const findPokemonByName = await fetch(`http://localhost:3000/name/${name}`)
@@ -129,16 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }).catch(e => { console.log(e); window.location.reload() });
         }
     }
-
-    typeSelect.addEventListener("input", function () {
-        removePokemons();
-        if (typeSelect.value == '') {
-            findAll()
-        } else {
-            findByType(typeSelect.value)
-        }
-    });
-
+   
     async function findAll() {
         fetch('http://localhost:3000')
             .then(response => response.json())
