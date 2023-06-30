@@ -3,9 +3,122 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const mainDiv = document.createElement('div');
     doc.appendChild(mainDiv);
-    mainDiv.classList.add('divCards');
+    mainDiv.classList.add('divCards'); 
 
-    const addPokemons = (pokemons) => {
+    const pages = pokemons =>{
+                
+        let limitPerPage = 8;
+
+        let state = {
+            page: 1,
+            limitPerPage,
+            totalPage: Math.ceil((pokemons.length) / limitPerPage),
+            maxVisibleButtons: 5
+        }
+
+        const html = {
+            get(element){
+                return document.querySelector(element)
+            }
+        }
+        const controlPagination = {
+            next() {
+                state.page++
+                if (state.page > state.totalPage) {state.page--}
+            },
+            prev() {
+                state.page--
+                if (state.page < 1) {state.page++}                
+            },
+            goTo(page) {                
+                if(page<1){
+                    page = 1
+                };
+                state.page = +page;
+                if(page> state.totalPage){
+                    state.page = state.totalPage
+                };
+            },
+            createListeners() {
+                html.get('.first').addEventListener('click', () => {controlPagination.goTo(1);update()})
+                html.get('.last').addEventListener('click', () => {controlPagination.goTo(state.totalPage);update()})
+                html.get('.next').addEventListener('click', () => {controlPagination.next();update()})
+                html.get('.prev').addEventListener('click', () =>{ controlPagination.prev();update()})
+            }
+        }
+        
+       const buttonsPagination ={
+        element: html.get('#pagination .numbers'),
+        create(number){
+            const button = document.createElement('div');
+            button.innerHTML= number;
+
+            if(state.page == number){
+                button.classList.add('active')
+            }
+            button.addEventListener('click', e => {
+                const page = e.target.innerText;
+                controlPagination.goTo(page);
+                update()
+            })
+            buttonsPagination.element.appendChild(button);
+        },
+        update(){
+            buttonsPagination.element.innerHTML = "";
+            const {maxLeft,maxRight} = buttonsPagination.calculateMaxVisible()
+
+            for(let page = maxLeft; page <= maxRight;page++){
+                buttonsPagination.create(page)
+            }
+        },
+        calculateMaxVisible(){
+            const {maxVisibleButtons} = state;
+
+            let maxLeft = (state.page - Math.floor(maxVisibleButtons/2))
+            let maxRight = (state.page + Math.floor(maxVisibleButtons/2))
+
+            if(maxLeft <1){
+                maxLeft = 1
+                maxRight = maxVisibleButtons
+            }
+            if(maxRight > state.totalPage){
+                maxLeft = state.totalPage - (maxVisibleButtons -1);
+                maxRight = state.totalPage
+                if(maxLeft<1){maxLeft = 1}
+            }
+            return {maxLeft,maxRight}
+        }
+       }
+
+       const list = {
+        create(pokemons ){
+            addPokemons(pokemons);            
+        },
+        update(){
+            mainDiv.innerText = "";
+            let page = state.page -1
+            let start = page* state.limitPerPage;
+            let end = start + state.limitPerPage
+
+            const listPerPage = pokemons.slice(start, end);            
+            addPokemons(listPerPage);
+        }
+       }
+
+       function update(){         
+        list.update();
+        buttonsPagination.update();
+        
+       }
+       function init(){
+        update();
+        controlPagination.createListeners();
+       }
+       init()
+          
+    } 
+
+    const addPokemons = (pokemons) => {        
         pokemons.forEach(pokemon => {
 
             const cardPokemon = document.createElement('div');
@@ -99,16 +212,15 @@ document.addEventListener("DOMContentLoaded", function () {
             findByName(filter.value, typeSelect.value);
         }
     });
-     
+
     typeSelect.addEventListener("input", function () {
         removePokemons();
         if (typeSelect.value == '') {
             findAll()
-        } else {            
+        } else {
             findByName(filter.value, typeSelect.value);
         }
     });
-
 
     function removePokemons() {
         mainDiv.innerText = "";
@@ -116,16 +228,14 @@ document.addEventListener("DOMContentLoaded", function () {
     async function findByType(type) {
         const findPokemonByType = await fetch(`http://localhost:3000/type/${type}`)
             .then(response => response.json())
-            .then(r => { addPokemons(r) })
+            .then(r => { pages(r) })
             .catch(e => { console.log(e); window.location.reload() });
     }
-
-
     async function findByName(name, type) {
         if (type == "") {
             const findPokemonByName = await fetch(`http://localhost:3000/name/${name}`)
                 .then(response => response.json())
-                .then(r => addPokemons(r))
+                .then(r => pages(r))
                 .catch(e => console.log(e));
         } else {
             const findPokemonByType = await fetch(`http://localhost:3000/type/${type}`)
@@ -137,17 +247,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             list.push(element)
                         }
                     });
-                    addPokemons(list);
+                    pages(list);
                 }).catch(e => { console.log(e); window.location.reload() });
         }
     }
-   
     async function findAll() {
         fetch('http://localhost:3000')
             .then(response => response.json())
-            .then(r => addPokemons(r))
+            .then(r => pages(r))
             .catch(e => alert(e));
     }
     findAll();
 });
-
