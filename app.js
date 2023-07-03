@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mainDiv.classList.add('divCards'); 
 
     const pages = pokemons =>{
-                
+
         let limitPerPage = 8;
 
         let state = {
@@ -45,13 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 html.get('.next').addEventListener('click', () => {controlPagination.next();update()})
                 html.get('.prev').addEventListener('click', () =>{ controlPagination.prev();update()})
             }
-        }
+        };
         
        const buttonsPagination ={
         element: html.get('#pagination .numbers'),
         create(number){
             const button = document.createElement('div');
             button.innerHTML= number;
+            button.classList.add('pages');
 
             if(state.page == number){
                 button.classList.add('active')
@@ -88,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return {maxLeft,maxRight}
         }
-       }
-
+       };
+       
        const list = {
         create(pokemons ){
             addPokemons(pokemons);            
@@ -103,18 +104,18 @@ document.addEventListener("DOMContentLoaded", function () {
             const listPerPage = pokemons.slice(start, end);            
             addPokemons(listPerPage);
         }
-       }
+       };
 
        function update(){         
         list.update();
-        buttonsPagination.update();
-        
-       }
+        buttonsPagination.update();        
+       };
        function init(){
         update();
         controlPagination.createListeners();
-       }
-       init()
+       };
+
+       init();
           
     } 
 

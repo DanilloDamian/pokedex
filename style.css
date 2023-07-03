@@ -46,7 +46,7 @@ header h1{
     text-align: center;      
 }
 .divCards{
-    margin: 2em;
+    margin:0em 2em ;
     display: flex;
     flex-wrap: wrap;    
 }
@@ -64,7 +64,7 @@ header h1{
     width:13em;
     display: flex;
     align-items:center;
-    justify-content: space-between
+    justify-content: space-between;
 }
 .blueBall{
     height: 2em;
@@ -84,7 +84,7 @@ header h1{
     font-size: 0.7em;
     text-align: center;
     padding-top: 10px;
-    margin-left:0.5em
+    margin-left:0.5em;
 }
 .articleCard{
     margin-top: 5px;
@@ -94,15 +94,16 @@ header h1{
     width: 13em;
     align-items: center;
     border: 1px solid;
-    border-radius: 0px 0px 0px 50px
+    border-radius: 0px 0px 0px 50px;
 }
 .imgPokemon{    
     background-color:var(--white);
     width: 90%;
     height: 165px;
     max-height: 60%;
-    margin-left: 10px;
-    margin-top: 5px
+    margin-left: 5px;
+    margin-top: 5px;
+    border: thick double;
 }
 .sectionStats{
     max-width: 60%;
@@ -113,7 +114,7 @@ header h1{
     flex-wrap: wrap; 
     align-items: center;      
     position: relative;
-    left: 7em
+    left: 7em;
 }
 .buttonStatus{
     width: 8em;
@@ -186,10 +187,11 @@ header h1{
     width: 90%;
     height: 158.97px;
     min-height:165px;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-top: 5px;
     background-color: var(--white);
-    font-size: 0.7em;    
+    font-size: 0.7em; 
+    border: thick double;    
 }
 .nameListStats{
     padding-top: 5px;
@@ -203,7 +205,41 @@ header h1{
 .imgButtons{
     position: relative;
     top: -5em;
-    left:-3.5em
+    left:-3.5em;
+}
+#pagination{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1em 0em;
+    width: 100%;
+}
+.numbers{
+    flex-grow: 6;
+    width:100%;
+    display: flex;
+    justify-content: space-around;
+}
+.pages{
+    margin: 0em 5px;
+}
+.active{
+    color: var(--red);
+}
+.first{
+    flex-grow:2;
+}
+.prev{
+    flex-grow:1;
+}
+.next{
+    flex-grow:1;
+}
+.last{
+    flex-grow:2;
+}
+.buttons_pagination{
+    width: 1.5em;
 }
 
 @media screen and (min-width: 1024px) {
@@ -233,5 +269,12 @@ header h1{
     .nomePokemon{
         margin-right:1.3em;
         font-size: 0.9em;
+    }
+    #pagination{
+        max-width: 30%;
+        margin-left: 6em;
+    }
+    .pages:hover{
+        transform: scale(2);
     }
 }
