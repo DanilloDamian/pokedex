@@ -1,8 +1,5 @@
 <strong>This is a simple Pokedex's project in JavaScript.</strong>
 
-https://danillodamian.github.io/pokedex/
-
-
 The pokemon list is from an API:
 
 <img height="360em" src="https://github.com/DanilloDamian/pokedex/blob/main/img/Screenshot_1.png"/>
